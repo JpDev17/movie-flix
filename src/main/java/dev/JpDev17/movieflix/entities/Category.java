@@ -13,6 +13,9 @@ public class Category {
     @Column(length = 100, nullable = false)
     private String name;
 
+    public Category() {
+    }
+
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;
