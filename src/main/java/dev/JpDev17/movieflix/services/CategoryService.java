@@ -34,15 +34,16 @@ public class CategoryService {
     }
 
     public CategoryResponse createCategory(CategoryRequest request) {
-        Category cratedCategory = CategoryMapper.toCategory(request);
-        Category newCategory = categoryRepository.save(cratedCategory);
+        Category createdCategory = CategoryMapper.toCategory(request);
+        Category newCategory = categoryRepository.save(createdCategory);
         return CategoryMapper.toCategoryResponse(newCategory);
     }
     
     public CategoryResponse updateCategory(Long id, CategoryRequest request) {
+        if (!categoryRepository.existsById(id)) {
+            throw new EntityNotFoundException("Category with id " + id + " not found!");
+        }
         Category createdCategory = CategoryMapper.toCategory(request);
-        categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Category with id " + id + " not found!"));
         createdCategory.setId(id);
         Category newCategory = categoryRepository.save(createdCategory);
         return CategoryMapper.toCategoryResponse(newCategory);

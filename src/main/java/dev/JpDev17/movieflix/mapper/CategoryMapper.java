@@ -3,9 +3,9 @@ package dev.JpDev17.movieflix.mapper;
 import dev.JpDev17.movieflix.entities.Category;
 import dev.JpDev17.movieflix.request.CategoryRequest;
 import dev.JpDev17.movieflix.response.CategoryResponse;
-import lombok.experimental.UtilityClass;
+import org.springframework.stereotype.Component;
 
-@UtilityClass
+@Component
 public class CategoryMapper {
 
     public static Category toCategory(CategoryRequest categoryRequest) {
