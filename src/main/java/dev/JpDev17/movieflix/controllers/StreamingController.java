@@ -48,7 +48,4 @@ public class StreamingController {
         streamingService.deleteById(id);
         return ResponseEntity.ok("Category with id " + id + " deleted successfully");
     }
-
-
-
 }
