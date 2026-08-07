@@ -13,6 +13,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieService {
@@ -82,5 +83,12 @@ public class MovieService {
 
         movie.setCategories(categories);
         movie.setStreamings(streamings);
+    }
+
+    public List<MovieResponse> findByCategory(Long categoryId) {
+       List<Movie> movies = movieRepository.findByCategories_Id(categoryId);
+       return movies.stream()
+               .map(MovieMapper::toMovieResponse)
+               .collect(Collectors.toList());
     }
 }

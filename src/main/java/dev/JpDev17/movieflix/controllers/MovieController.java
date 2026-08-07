@@ -1,5 +1,6 @@
 package dev.JpDev17.movieflix.controllers;
 
+import dev.JpDev17.movieflix.mapper.MovieMapper;
 import dev.JpDev17.movieflix.request.MovieRequest;
 import dev.JpDev17.movieflix.response.MovieResponse;
 import dev.JpDev17.movieflix.services.MovieService;
@@ -47,5 +48,10 @@ public class MovieController {
     public ResponseEntity<?> deleteByMovieId(@PathVariable Long id) {
         movieService.deleteById(id);
         return ResponseEntity.ok("Movie with id " + id + " deleted successfully");
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<MovieResponse>> findByCategory(@RequestParam Long categoryId) {
+        return ResponseEntity.ok(movieService.findByCategory(categoryId));
     }
 }
